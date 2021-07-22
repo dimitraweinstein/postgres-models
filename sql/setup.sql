@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS beanies;
+
+CREATE TABLE beanies (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    theme TEXT NOT NULL,
+    animal TEXT NOT NULL,
+    release_year INTEGER
+);
