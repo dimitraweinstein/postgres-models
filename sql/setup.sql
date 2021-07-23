@@ -7,3 +7,10 @@ CREATE TABLE beanies (
     animal TEXT NOT NULL,
     release_year INTEGER NOT NULL
 );
+
+CREATE TABLE beverages (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    type TEXT NOT NULL,
+);

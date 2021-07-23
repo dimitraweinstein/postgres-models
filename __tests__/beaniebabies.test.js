@@ -4,7 +4,7 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import Beanie from '../lib/models/Beanie.js';
 
-describe('demo routes', () => {
+describe('beanie routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
