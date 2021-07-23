@@ -11,7 +11,7 @@ describe('beverage routes', () => {
 
   it('creates a beverage via POST', async () => {
     const beverage = { name: 'water', category: 'nonalcoholic', type: 'healthy' };
-    const res = await (await request(app).post('/api/v1/beverages')).setEncoding(beverage);
+    const res = await request(app).post('/api/v1/beverages').send(beverage);
 
     expect(res.body).toEqual({
       id: '1',
@@ -19,7 +19,6 @@ describe('beverage routes', () => {
       category: 'nonalcoholic',
       type: 'healthy'
     });
-
   });
 }
 );
