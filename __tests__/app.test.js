@@ -51,7 +51,7 @@ describe('demo routes', () => {
       });
   });
 
-  it('gets a beanie babie by id', async () => {
+  it('gets a beanie babie by id via GET', async () => {
     const wiser = await Beanie.insert({
       id: '1',
       name: 'wiser',
@@ -65,8 +65,8 @@ describe('demo routes', () => {
     expect(res.body).toEqual(wiser);
   });
 
-  it('updates a beanie babie by id', async () => {
-    const wiser = await Beanie.inser({
+  it('updates a beanie babie via PUT', async () => {
+    const wiser = await Beanie.insert({
       id: '1',
       name: 'wiser',
       theme: 'beanie babies',
@@ -74,10 +74,11 @@ describe('demo routes', () => {
       releaseYear: 1999
     });
 
-    const res = await request(app).get(`/api/v1/beanies/${wiser.id}`);
+    const res = await request(app)
+      .put(`/api/v1/beanies/${wiser.id}`)
+      .send({ releaseYear: 2001 });
 
-    expect(res.body).toEqual(wiser);
-  }
-  );
+    expect(res.body).toEqual({ ...wiser, releaseYear: 2001 });
+  });
 }
 );
