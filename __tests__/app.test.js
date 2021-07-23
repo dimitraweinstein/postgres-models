@@ -10,8 +10,8 @@ describe('demo routes', () => {
   });
 
   it('creates a beanie babie via POST', async () => {
-    const wiser = { name: 'wiser', theme: 'beanie babies', animal: 'bird, owl', releaseYear: 1999 };
-    const res = await request(app).post('/api/v1/beanies').send(wiser);
+    const beanie = { name: 'wiser', theme: 'beanie babies', animal: 'bird, owl', releaseYear: 1999 };
+    const res = await request(app).post('/api/v1/beanies').send(beanie);
 
     expect(res.body).toEqual({
       id: '1',
@@ -51,8 +51,8 @@ describe('demo routes', () => {
       });
   });
 
-  it('gets a beanie babie by id', async () => {
-    const wiser = await Beanie.insert({
+  it('gets a beanie babie by id via GET', async () => {
+    const beanie = await Beanie.insert({
       id: '1',
       name: 'wiser',
       theme: 'beanie babies',
@@ -60,10 +60,41 @@ describe('demo routes', () => {
       releaseYear: 1999
     });
 
-    const res = await request(app).get(`/api/v1/beanies/${wiser.id}`);
+    const res = await request(app).get(`/api/v1/beanies/${beanie.id}`);
 
-    expect(res.body).toEqual(wiser);
+    expect(res.body).toEqual(beanie);
   });
 
+  it('updates a beanie babie via PUT', async () => {
+    const beanie = await Beanie.insert({
+      id: '1',
+      name: 'wiser',
+      theme: 'beanie babies',
+      animal: 'bird, owl',
+      releaseYear: 1999
+    });
 
-});
+    const res = await request(app)
+      .put(`/api/v1/beanies/${beanie.id}`)
+      .send({ releaseYear: 2001 });
+
+    expect(res.body).toEqual({ ...beanie, releaseYear: 2001 });
+  });
+
+  it('deletes a beanie babie via DELETE', async () => {
+    const beanie = await Beanie.insert({
+      id: '1',
+      name: 'wiser',
+      theme: 'beanie babies',
+      animal: 'bird, owl',
+      releaseYear: 1999
+    });
+
+    const res = await request(app).delete(`/api/v1/beanies/${beanie.id}`);
+    
+    expect(res.body).toEqual({
+      message: `${beanie.name} has been deleted from your collection!`
+    });
+  });
+}
+);
