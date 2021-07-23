@@ -51,6 +51,19 @@ describe('demo routes', () => {
       });
   });
 
-  
+  it('gets a beanie babie by id', async () => {
+    const wiser = await Beanie.insert({
+      id: '1',
+      name: 'wiser',
+      theme: 'beanie babies',
+      animal: 'bird, owl',
+      releaseYear: 1999
+    });
+
+    const res = await request(app).get(`/api/v1/beanies/${wiser.id}`);
+
+    expect(res.body).toEqual(wiser);
+  });
+
 
 });
