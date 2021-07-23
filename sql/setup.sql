@@ -5,5 +5,5 @@ CREATE TABLE beanies (
     name TEXT NOT NULL,
     theme TEXT NOT NULL,
     animal TEXT NOT NULL,
-    release_year INTEGER
+    release_year INTEGER NOT NULL
 );
