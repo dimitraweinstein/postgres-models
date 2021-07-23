@@ -90,8 +90,7 @@ describe('demo routes', () => {
       releaseYear: 1999
     });
 
-    const res = await request(app)
-      .delete(`/api/v1/beanies/${beanie.id}`);
+    const res = await request(app).delete(`/api/v1/beanies/${beanie.id}`);
     
     expect(res.body).toEqual({
       message: `${beanie.name} has been deleted from your collection!`
