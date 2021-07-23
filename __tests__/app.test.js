@@ -22,5 +22,35 @@ describe('demo routes', () => {
     });
   });
 
+  it('gets all beanie babies via GET', async () => {
+    const wiser = await Beanie.insert({
+      name: 'wiser',
+      theme: 'beanie babies',
+      animal: 'bird, owl',
+      releaseYear: 1999
+    });
+
+    const miami = await Beanie.insert({
+      name: 'miami the bear',
+      theme: 'beanie babies',
+      animal: 'bear',
+      releaseYear: 2006
+    });
+
+    const sniffer = await Beanie.insert({
+      name: 'sniffer',
+      theme: 'beanie babies',
+      animal: 'dog',
+      releaseYear: 2000
+    });
+
+    return request(app)
+      .get('/api/v1/beanies')
+      .then((res) => {
+        expect(res.body).toEqual([wiser, miami, sniffer]);
+      });
+  });
+
+  
 
 });
