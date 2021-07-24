@@ -51,4 +51,17 @@ describe('roots albums routes', () => {
         expect(res.body).toEqual([album1, album2, album3]);
       });
   });
+    
+  it('gets an album by id via GET', async () => {
+    const album1 = await Roots.insert({
+      id: '1',
+      album: 'things fall apart',
+      recordingLabel: 'mca records',
+      releaseYear: 1999
+    });
+      
+    const res = await request(app).get(`/api/v1/roots/${album1.id}`);
+
+    expect(res.body).toEqual(album1);
+  });
 });
