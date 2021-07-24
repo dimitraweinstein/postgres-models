@@ -48,12 +48,12 @@ describe('beverage routes', () => {
   });
     
   it('gets a beverage by id via GET', async () => {
-    const beverage = {
+    const beverage = await Beverage.insert({
       id: '1',
       name: 'water',
       category: 'nonalcoholic',
       type: 'healthy'
-    };
+    });
       
     const res = await request(app).get(`/api/v1/beverages/${beverage.id}`);
       
