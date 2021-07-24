@@ -20,5 +20,31 @@ describe('beverage routes', () => {
       type: 'healthy'
     });
   });
+    
+  it('gets all beverages via GET', async () => {
+    const water = await Beverage.insert({
+      name: 'water',
+      category: 'nonalcoholic',
+      type: 'healthy'
+    });
+      
+    const beer = await Beverage.insert({
+      name: 'beer',
+      category: 'alcoholic',
+      type: 'fermented'
+    });
+
+    const coffee = await Beverage.insert({
+      name: 'coffee',
+      category: 'nonalcoholic',
+      type: 'stimulating'
+    });
+      
+    return request(app)
+      .get('/api/v1/beverages')
+      .then((res) => {
+        expect(res.body).toEqual([water, beer, coffee]);
+      });
+  });
 }
 );
