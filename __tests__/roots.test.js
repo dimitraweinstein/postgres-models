@@ -22,4 +22,33 @@ describe('roots albums routes', () => {
       releaseYear: 1999
     });
   });
+    
+  it('gets all roots albums via GET', async () => {
+    const album1 = await Roots.insert({
+      id: '1',
+      album: 'things fall apart',
+      recordingLabel: 'mca records',
+      releaseYear: 1999
+    });
+      
+    const album2 = await Roots.insert({
+      id: '2',
+      album: 'phrenology',
+      recordingLabel: 'mca records',
+      releaseYear: 2002
+    });
+      
+    const album3 = await Roots.insert({
+      id: '3',
+      album: 'the tipping point',
+      recordingLabel: 'geffen records',
+      releaseYear: 2004
+    });
+      
+    return request(app)
+      .get('/api/v1/roots')
+      .then((res) => {
+        expect(res.body).toEqual([album1, album2, album3]);
+      });
+  });
 });
