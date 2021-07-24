@@ -22,7 +22,7 @@ describe('beverage routes', () => {
   });
     
   it('gets all beverages via GET', async () => {
-    const water = await Beverage.inster({
+    const water = await Beverage.insert({
       name: 'water',
       category: 'nonalcoholic',
       type: 'healthy'
