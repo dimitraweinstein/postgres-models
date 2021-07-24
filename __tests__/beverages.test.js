@@ -59,5 +59,35 @@ describe('beverage routes', () => {
       
     expect(res.body).toEqual(beverage);
   });
+    
+  it('updates a beverage by id via PUT', async () => {
+    const beverage = await Beverage.insert({
+      id: '1',
+      name: 'water',
+      category: 'nonalcoholic',
+      type: 'healthy'
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/beverages/${beverage.id}`)
+      .send({ type: 'nourishing' });
+      
+    expect(res.body).toEqual({ ...beverage, type: 'nourishing' });
+  });
+    
+  it('deletes a beverage by id via DELETE', async () => {
+    const beverage = await Beverage.insert({
+      id: '1',
+      name: 'water',
+      category: 'nonalcoholic',
+      type: 'healthy'
+    });
+
+    const res = await request(app).delete(`/api/v1/beverages/${beverage.id}`);
+
+    expect(res.body).toEqual({
+      message: `${beverage.name} has been deleted!`
+    });
+  });
 }
 );
