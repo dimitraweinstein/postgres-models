@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS beanies;
 DROP TABLE IF EXISTS beverages;
+DROP TABLE IF EXISTS roots_albums;
 
 CREATE TABLE beanies (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,4 +15,11 @@ CREATE TABLE beverages (
     name TEXT NOT NULL,
     category TEXT NOT NULL,
     type TEXT NOT NULL
+);
+
+CREATE TABLE roots_albums (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    album TEXT NOT NULL,
+    recording_label TEXT NOT NULL,
+    release_year INTEGER NOT NULL
 );
