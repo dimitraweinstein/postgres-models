@@ -15,7 +15,12 @@ describe('roots albums routes', () => {
 
     const res = await request(app).post('/api/v1/rootsalbums').send(album);
 
-    expect(res.body).toEqual(album);
+    expect(res.body).toEqual({
+      id: '1',
+      album: 'things fall apart',
+      recordingLabel: 'mca records',
+      releaseYear: 1999
+    });
   });
 }
 );
