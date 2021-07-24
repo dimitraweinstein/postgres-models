@@ -46,5 +46,18 @@ describe('beverage routes', () => {
         expect(res.body).toEqual([water, beer, coffee]);
       });
   });
+    
+  it('gets a beverage by id via GET', async () => {
+    const beverage = await Beverage.insert({
+      id: '1',
+      name: 'water',
+      category: 'nonalcoholic',
+      type: 'healthy'
+    });
+      
+    const res = await request(app).get(`/api/v1/beverages/${beverage.id}`);
+      
+    expect(res.body).toEqual(beverage);
+  });
 }
 );
