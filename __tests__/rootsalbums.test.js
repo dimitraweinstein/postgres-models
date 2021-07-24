@@ -2,7 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'superagent';
 import app from '../lib/app.js';
-import RootsAlbums from '../lib/models/RootsAlbums.js';
+import RootsAlbums from '../lib/models/RootsAlbum.js';
 
 describe('roots albums routes', () => {
   beforeEach(() => {
