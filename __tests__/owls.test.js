@@ -11,9 +11,11 @@ describe('owl routes', () => {
 
   it('creates an owl via POST', async () => {
     const owl = { owl: 'burrowing owl', habitat: 'grasslands', threats: 'habitat loss, pesticides' };
+        
     const res = await request(app).post('/api/v1/owls').send(owl);
 
     expect(res.body).toEqual({
+      id: '1',
       owl: 'burrowing owl',
       habitat: 'grasslands',
       threats: 'habitat loss, pesticides'
