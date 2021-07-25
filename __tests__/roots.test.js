@@ -79,4 +79,20 @@ describe('roots albums routes', () => {
         
     expect(res.body).toEqual({ ...album1, recordingLabel: 'def jam' });
   });
+    
+  it('deletes an album by id via DELETE', async () => {
+    const album = await Roots.insert({
+      id: '1',
+      album: 'things fall apart',
+      recordingLabel: 'mca records',
+      releaseYear: 1999
+    });
+
+    const res = await request(app)
+      .delete (`/api/v1/roots/${album.id}`);
+            
+    expect(res.body).toEqual({
+      message: `${album.album} has been deleted!`
+    });
+  });
 });
