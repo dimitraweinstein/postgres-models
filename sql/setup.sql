@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS beanies;
 DROP TABLE IF EXISTS beverages;
 DROP TABLE IF EXISTS roots_albums;
+DROP TABLE IF EXISTS owls;
 
 CREATE TABLE beanies (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -22,4 +23,11 @@ CREATE TABLE roots_albums (
     album TEXT NOT NULL,
     recording_label TEXT NOT NULL,
     release_year INTEGER NOT NULL
+);
+
+CREATE TABLE owls (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    owl TEXT NOT NULL,
+    habitat TEXT NOT NULL,
+    threats TEXT NOT NULL
 );
