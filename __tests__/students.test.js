@@ -50,4 +50,17 @@ describe('student routes', () => {
         expect(res.body).toEqual([summer, janet, mark]);
       });
   });
+
+  it('gets one student by id via GET', async () => {
+    const summer = await Student.insert({
+      id: '1',
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
+    });
+
+    const res = await request(app).get(`/api/vi/students/${summer.id}`);
+
+    expect(res.body).toEqual(summer);
+  });
 });
