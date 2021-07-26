@@ -1,6 +1,6 @@
 import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
-import request from 'superagent';
+import request from 'supertest';
 import app from '../lib/app.js';
 import Owl from '../lib/models/Owl.js';
 
