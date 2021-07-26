@@ -59,7 +59,7 @@ describe('student routes', () => {
       status: 'active'
     });
 
-    const res = await request(app).get(`/api/vi/students/${summer.id}`);
+    const res = await request(app).get(`/api/v1/students/${summer.id}`);
 
     expect(res.body).toEqual(summer);
   });
