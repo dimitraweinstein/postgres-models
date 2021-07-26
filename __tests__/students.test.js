@@ -71,7 +71,7 @@ describe('student routes', () => {
       lastName: 'buckland',
       status: 'active'
     });
-
+    
     const res = await request(app)
       .put(`/api/v1/students/${summer.id}`)
       .send({ status: 'inactive' });
