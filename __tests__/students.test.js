@@ -16,7 +16,9 @@ describe('student routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      ...student
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
     });
   });
 });
