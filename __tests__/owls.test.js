@@ -82,4 +82,18 @@ describe('Owls routes', () => {
     expect(res.body).toEqual({ ...owl, habitat: 'forests' });
   });
 
+  it('deletes an owl by id via DELTE', async () => {
+    const owl = await Owl.insert({
+      id: '1',
+      owl: 'burrowing owl',
+      habitat: 'grasslands',
+      threats: 'habitat loss, pesticides'
+    });
+
+    const res = await request(app).delete(`/api/v1/owls/${owl.id}`);
+
+    expect(res.body).toEqual({
+      message: `${owl.owl} has been deleted!`
+    });
+  });
 });
