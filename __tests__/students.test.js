@@ -16,7 +16,38 @@ describe('student routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      ...student
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
     });
+  });
+
+  it('gets all students via GET', async () => {
+    const summer = await Student.insert({
+      id: '1',
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
+    });
+
+    const janet = await Student.insert({
+      id: '2',
+      firstName: 'janet',
+      lastName: 'blackwood',
+      status: 'active'
+    });
+
+    const mark = await Student.insert({
+      id: '3',
+      firstName: 'mark',
+      lastName: 'kooy',
+      status: 'inactive'
+    });
+
+    return request(app)
+      .get('/api/v1/students')
+      .then((res) => {
+        expect(res.body).toEqual([summer, janet, mark]);
+      });
   });
 });
