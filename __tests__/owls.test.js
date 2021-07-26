@@ -67,7 +67,7 @@ describe('Owls routes', () => {
     });
   });
 
-  it('updates an owl by id', async () => {
+  it('updates an owl by id via PUT', async () => {
     const owl = await Owl.insert({
       id: '1',
       owl: 'burrowing owl',
@@ -75,9 +75,11 @@ describe('Owls routes', () => {
       threats: 'loss of habitat, pesticides'
     });
 
-    const res = await request(app).put(`/api/v1/owls/${owl.id}`).send({ habitat: 'forests' });
+    const res = await request(app)
+      .put(`/api/v1/owls/${owl.id}`)
+      .send({ habitat: 'forests' });
 
-    expect(res.body).toEqual({...owl, habitat: 'forests' });
+    expect(res.body).toEqual({ ...owl, habitat: 'forests' });
   });
 
 });
