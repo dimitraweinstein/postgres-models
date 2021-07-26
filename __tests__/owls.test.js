@@ -50,14 +50,14 @@ describe('Owls routes', () => {
   });
 
   it('gets one owl by id', async() => {
-    const owl1 = {
+    const owl = await Owl.insert({
       id: '1',
       owl: 'burrowing owl',
       habitat: 'grasslands',
       threats: 'loss of habitat, pesticides'
-    };
+    });
 
-    const res = await request(app).get(`/api/v1/owls/${owl1.id}`);
+    const res = await request(app).get(`/api/v1/owls/${owl.id}`);
 
     expect(res.body).toEqual({
       id: '1',
@@ -66,5 +66,5 @@ describe('Owls routes', () => {
       threats: 'loss of habitat, pesticides'
     });
   });
-  
+
 });
