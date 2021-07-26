@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS beanies;
 DROP TABLE IF EXISTS beverages;
 DROP TABLE IF EXISTS roots_albums;
 DROP TABLE IF EXISTS owls;
-
+DROP TABLE IF EXISTS students;
 
 
 CREATE TABLE beanies (
@@ -32,4 +32,11 @@ CREATE TABLE owls (
     owl TEXT NOT NULL,
     habitat TEXT NOT NULL,
     threats TEXT NOT NULL
+);
+
+CREATE TABLE students (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    status TEXT NOT NULL
 );
