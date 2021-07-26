@@ -63,4 +63,34 @@ describe('student routes', () => {
 
     expect(res.body).toEqual(summer);
   });
+
+  it('updates one student by id via PUT', async () => {
+    const summer = await Student.insert({
+      id: '1',
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/students/${summer.id}`)
+      .send({ status: 'inactive' });
+    
+    expect(res.body).toEqual({ ...summer, status: 'inactive' });
+  });
+
+  it('deletes one student by id via DELTE', async () => {
+    const summer = await Student.insert({
+      id: '1',
+      firstName: 'summer',
+      lastName: 'buckland',
+      status: 'active'
+    });
+
+    const res = await request(app).delete(`/api/v1/students/${summer.id}`);
+
+    expect(res.body).toEqual({
+      message: `${summer.firstName} ${summer.lastName} has been deleted from the database.`
+    });
+  });
 });
